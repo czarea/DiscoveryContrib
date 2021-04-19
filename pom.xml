@@ -15,13 +15,12 @@
         <module>discovery-contrib-plugin-starter-rocketmq</module>
         <module>discovery-contrib-plugin-starter-shardingsphere</module>
         <module>discovery-contrib-example</module>
+        <module>discovery-contrib-plugin-starter-rabbitmq</module>
     </modules>
 
     <properties>
         <discovery.version>6.9.0</discovery.version>
-
         <rocketmq.version>2.1.1</rocketmq.version>
-
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -39,6 +38,13 @@
                 <artifactId>discovery-contrib-plugin-starter-rocketmq</artifactId>
                 <version>${project.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>discovery-contrib-plugin-starter-rabbitmq</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
 
             <dependency>
                 <groupId>${project.groupId}</groupId>

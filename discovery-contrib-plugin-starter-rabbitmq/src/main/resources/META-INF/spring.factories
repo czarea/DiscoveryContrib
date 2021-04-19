@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.nepxion.discovery.contrib.plugin.rabbitmq.configuration.RabbitContribAutoConfiguration
