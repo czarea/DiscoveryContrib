@@ -5,18 +5,20 @@ package com.nepxion.discovery.contrib.plugin.shardingsphere.processor;
  * <p>Description: Nepxion Discovery</p>
  * <p>Copyright: Copyright (c) 2017-2050</p>
  * <p>Company: Nepxion</p>
+ *
  * @author Haojun Ren
  * @version 1.0
  */
 
-import org.apache.commons.lang3.StringUtils;
-
 import com.nepxion.discovery.contrib.plugin.processor.ContribProcessor;
 import com.nepxion.discovery.contrib.plugin.shardingsphere.constant.ShardingSphereContribConstant;
+import java.util.Map;
+import org.apache.commons.lang3.StringUtils;
 
 public class ShardingSphereContribProcessor implements ContribProcessor {
+
     @Override
-    public void process(String key, String value) {
+    public void process(String key, Map<String, String> value) {
         if (!StringUtils.equals(key, ShardingSphereContribConstant.SHARDING_SPHERE)) {
             return;
         }

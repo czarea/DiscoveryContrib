@@ -59,6 +59,10 @@ public class ContribSubscriber {
         String serviceId = pluginAdapter.getServiceId();
         List<ParameterServiceEntity> parameterServiceEntityList = parameterServiceMap.get(serviceId);
 
+        if (parameterServiceEntityList == null) {
+            return;
+        }
+
         Map<String, String> keyMap = new HashMap<String, String>();
         for (ParameterServiceEntity parameterServiceEntity : parameterServiceEntityList) {
             Map<String, String> parameterMap = parameterServiceEntity.getParameterMap();
@@ -106,43 +110,35 @@ public class ContribSubscriber {
             // <service service-name="discovery-guide-service-a" tag-key="version" tag-value="1.0" key="ShardingSphere" value="db1"/>
             // <service service-name="discovery-guide-service-a" tag-key="version" tag-value="1.1" key="ShardingSphere" value="db2"/>
             // <service service-name="discovery-guide-service-a" tag-key="region" tag-value="dev" key="RocketMQ" value="queue1"/>
-            // <service service-name="discovery-guide-service-a" tag-key="region" tag-value="qa" key="RocketMQ" value="queue2"/>            
+            // <service service-name="discovery-guide-service-a" tag-key="region" tag-value="qa" key="RocketMQ" value="queue2"/>
             if (StringUtils.equals(tagKey, ContribConstant.VERSION)) {
                 if (contribMatcher.match(tagValue, pluginAdapter.getVersion())) {
-                    process(key, value);
+                    process(key, parameterMap);
                 }
             } else if (StringUtils.equals(tagKey, ContribConstant.REGION)) {
                 if (contribMatcher.match(tagValue, pluginAdapter.getRegion())) {
-                    process(key, value);
+                    process(key, parameterMap);
                 }
             } else if (StringUtils.equals(tagKey, ContribConstant.ENVIRONMENT)) {
                 if (contribMatcher.match(tagValue, pluginAdapter.getEnvironment())) {
-                    process(key, value);
+                    process(key, parameterMap);
                 }
             } else if (StringUtils.equals(tagKey, ContribConstant.ZONE)) {
                 if (contribMatcher.match(tagValue, pluginAdapter.getZone())) {
-                    process(key, value);
+                    process(key, parameterMap);
                 }
             } else if (StringUtils.equals(tagKey, ContribConstant.ADDRESS)) {
                 if (contribMatcher.matchAddress(tagValue)) {
-                    process(key, value);
+                    process(key, parameterMap);
                 }
             }
         }
     }
 
-    public void process(String key, String value) {
+    public void process(String key, Map<String, String> value) {
         if (CollectionUtils.isEmpty(contribProcessorList)) {
             return;
         }
-
-        String existedValue = contribCache.get(key);
-        if (StringUtils.equals(value, existedValue)) {
-            return;
-        }
-
-        contribCache.put(key, value);
-
         LOG.info("Gray release for {} with {}", key, value);
 
         for (ContribProcessor contribProcessor : contribProcessorList) {

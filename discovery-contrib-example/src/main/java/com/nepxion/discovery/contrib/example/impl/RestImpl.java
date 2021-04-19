@@ -21,8 +21,6 @@ public class RestImpl {
 
     @GetMapping(path = "/rest/{value}")
     public String rest(@PathVariable(value = "value") String value) {
-        rocketMQImpl.produce();
-
         return value;
     }
 }

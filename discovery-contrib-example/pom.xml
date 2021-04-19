@@ -11,20 +11,24 @@
     <parent>
         <groupId>com.nepxion</groupId>
         <artifactId>discovery-contrib</artifactId>
-        <version>1.0.0</version>
+        <version>2.0.0</version>
     </parent>
+
+    <properties>
+        <maven.deploy.skip>true</maven.deploy.skip>
+    </properties>
 
     <dependencies>
         <!-- 1.注册中心插件 -->
         <dependency>
             <groupId>com.nepxion</groupId>
-            <artifactId>discovery-plugin-register-center-starter-nacos</artifactId>
+            <artifactId>discovery-plugin-register-center-starter-eureka</artifactId>
         </dependency>
 
         <!-- 2.配置中心插件 -->
         <dependency>
             <groupId>com.nepxion</groupId>
-            <artifactId>discovery-plugin-config-center-starter-nacos</artifactId>
+            <artifactId>discovery-plugin-config-center-starter-apollo</artifactId>
         </dependency>
 
         <!-- 3.管理中心插件 -->
@@ -43,6 +47,17 @@
         <dependency>
             <groupId>com.nepxion</groupId>
             <artifactId>discovery-contrib-plugin-starter-rocketmq</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.nepxion</groupId>
+            <artifactId>discovery-contrib-plugin-starter-rabbitmq</artifactId>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
 
         <!-- 6.ShardingSphere灰度插件 -->
