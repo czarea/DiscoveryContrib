@@ -9,6 +9,9 @@ package com.nepxion.discovery.contrib.example;
  * @version 1.0
  */
 
+import com.nepxion.discovery.contrib.example.listener.ConsumerHandler;
+import org.springframework.amqp.rabbit.core.RabbitAdmin;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -19,6 +22,7 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 @EnableDiscoveryClient
 public class DiscoveryContribService {
+
     public static void main(String[] args) {
         new SpringApplicationBuilder(DiscoveryContribService.class).run(args);
     }
@@ -27,5 +31,15 @@ public class DiscoveryContribService {
     @LoadBalanced
     public RestTemplate restTemplate() {
         return new RestTemplate();
+    }
+
+    @Bean
+    public RabbitAdmin rabbitAdmin(RabbitTemplate rabbitTemplate) {
+        return new RabbitAdmin(rabbitTemplate.getConnectionFactory());
+    }
+
+    @Bean
+    public ConsumerHandler consumerHandler() {
+        return new ConsumerHandler(true);
     }
 }
