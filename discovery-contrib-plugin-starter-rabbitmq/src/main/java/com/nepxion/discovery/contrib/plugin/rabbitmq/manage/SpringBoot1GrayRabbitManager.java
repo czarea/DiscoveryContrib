@@ -1,6 +1,7 @@
 package com.nepxion.discovery.contrib.plugin.rabbitmq.manage;
 
 import com.nepxion.discovery.contrib.plugin.rabbitmq.RabbitManager;
+import com.sun.istack.internal.NotNull;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
@@ -63,7 +64,7 @@ public class SpringBoot1GrayRabbitManager implements ApplicationContextAware, Ra
      * @param routingKey 路由名
      * @param needDlx 需要死信队列
      */
-    public void addQueueAndExchange(String queueName, String exchange, String routingKey, boolean needDlx) {
+    private void addQueueAndExchange(String queueName, String exchange, String routingKey, boolean needDlx) {
         Queue queue = new Queue(queueName);
         TopicExchange topicExchange = new TopicExchange(exchange);
         if (needDlx) {
@@ -102,10 +103,10 @@ public class SpringBoot1GrayRabbitManager implements ApplicationContextAware, Ra
      *
      * @param queueName 队列名
      * @param consumerNum 消费者线程数量
-     * @param needDlx 需要死信队列
+     * @param ack 需要死信队列
      */
     @Override
-    public void startListener(String queueName, int consumerNum, boolean needDlx, String msgListener) {
+    public void startListener(String queueName, int consumerNum, boolean ack, String msgListener) {
         SimpleMessageListenerContainer container = new SimpleMessageListenerContainer(rabbitTemplate.getConnectionFactory());
         SimpleMessageListenerContainer getContainer = CONTAINER_MAP.putIfAbsent(queueName, container);
         if (getContainer != null) {
@@ -116,7 +117,7 @@ public class SpringBoot1GrayRabbitManager implements ApplicationContextAware, Ra
             log.info("动态添加mq监听成功,队列:{},线程数:{}", queueName, consumerNum);
         }
         container.setPrefetchCount(consumerNum);
-        if (needDlx) {
+        if (ack) {
             container.setAcknowledgeMode(AcknowledgeMode.AUTO);
         } else {
             container.setAcknowledgeMode(AcknowledgeMode.MANUAL);
