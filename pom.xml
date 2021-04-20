@@ -15,6 +15,7 @@
         <module>discovery-contrib-plugin-starter-rocketmq</module>
         <module>discovery-contrib-plugin-starter-shardingsphere</module>
         <module>discovery-contrib-example</module>
+        <module>discovery-contrib-plugin-starter-rabbitmq</module>
     </modules>
 
     <properties>

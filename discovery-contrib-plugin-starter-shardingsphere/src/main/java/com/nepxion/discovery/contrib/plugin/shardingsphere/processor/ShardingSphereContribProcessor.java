@@ -9,6 +9,7 @@ package com.nepxion.discovery.contrib.plugin.shardingsphere.processor;
  * @version 1.0
  */
 
+import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 
 import com.nepxion.discovery.contrib.plugin.processor.ContribProcessor;
@@ -16,7 +17,7 @@ import com.nepxion.discovery.contrib.plugin.shardingsphere.constant.ShardingSphe
 
 public class ShardingSphereContribProcessor implements ContribProcessor {
     @Override
-    public void process(String key, String value) {
+    public void process(String key, Map<String,String> value) {
         if (!StringUtils.equals(key, ShardingSphereContribConstant.SHARDING_SPHERE)) {
             return;
         }

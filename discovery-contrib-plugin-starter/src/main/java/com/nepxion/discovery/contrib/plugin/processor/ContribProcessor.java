@@ -1,5 +1,7 @@
 package com.nepxion.discovery.contrib.plugin.processor;
 
+import java.util.Map;
+
 /**
  * <p>Title: Nepxion Discovery</p>
  * <p>Description: Nepxion Discovery</p>
@@ -10,5 +12,5 @@ package com.nepxion.discovery.contrib.plugin.processor;
  */
 
 public interface ContribProcessor {
-    void process(String key, String value);
+    void process(String key, Map<String,String> value);
 }
