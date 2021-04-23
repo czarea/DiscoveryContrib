@@ -22,7 +22,7 @@
         <!-- 1.注册中心插件 -->
         <dependency>
             <groupId>com.nepxion</groupId>
-            <artifactId>discovery-plugin-register-center-starter-nacos</artifactId>
+            <artifactId>discovery-plugin-register-center-starter-eureka</artifactId>
             <exclusions>
                 <exclusion>
                     <artifactId>nacos-client</artifactId>
@@ -34,7 +34,7 @@
         <!-- 2.配置中心插件 -->
         <dependency>
             <groupId>com.nepxion</groupId>
-            <artifactId>discovery-plugin-config-center-starter-nacos</artifactId>
+            <artifactId>discovery-plugin-config-center-starter-apollo</artifactId>
             <exclusions>
                 <exclusion>
                     <artifactId>nacos-client</artifactId>
