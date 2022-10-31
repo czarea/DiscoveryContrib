@@ -19,7 +19,8 @@
     </modules>
 
     <properties>
-        <discovery.version>6.9.0</discovery.version>
+        <discovery.version>6.19.0</discovery.version>
+
         <rocketmq.version>2.1.1</rocketmq.version>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
